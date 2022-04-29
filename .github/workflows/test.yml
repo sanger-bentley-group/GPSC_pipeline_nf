@@ -1,0 +1,24 @@
+# Runs test related tasks.
+
+name: test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+    - name: Install Nextflow
+      run: |
+        # Install latest version of Nextflow
+        curl -s https://get.nextflow.io | bash
+        sudo mv nextflow /usr/bin
+    - name: Regression tests
+      run: ./tests/regression_tests.sh -s
+      shell: bash
