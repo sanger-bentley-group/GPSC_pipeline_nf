@@ -1,0 +1,10 @@
+db/GPS*
+work*
+.nextflow.log*
+.nextflow
+nextflow_test.log*
+tests/.nextflow
+tests/nextflow_test.log
+tests/poppunk_clusters_clusters.csv
+tests/test_clusters.csv
+output
