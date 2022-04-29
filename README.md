@@ -1,5 +1,7 @@
 # GPSC Pipeline
 
+![test](https://github.com/sanger-bentley-group/GPSC_pipeline_nf/workflows/test/badge.svg)
+
 ## Quick start
 
 ### Installation
