@@ -19,6 +19,10 @@ workflow {
     .set { poppunk_query_file_ch }
 
     if (!file(params.gps_db_local).exists()) {
+
+        db_dir = file(params.db_dir)
+        db_dir.mkdir()
+
         download_GPS_ref_db(params.gps_db)
         download_GPS_ref_db.out.db
         .subscribe { it ->
