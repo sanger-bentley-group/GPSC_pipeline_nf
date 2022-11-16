@@ -17,7 +17,7 @@ cd GPSC_pipeline_nf
 
 ### Run pipeline
 ```
-nextflow run main.nf --manifest your_manifest.txt
+nextflow run main.nf --manifest your_manifest.txt --results_dir results
 ```
 
 Your manifest `your_manifest.txt` must be a tab-delimited file with headers `sample_id` and `assembly`, e.g.
@@ -26,3 +26,8 @@ sample_id | assembly
 :---: | :---:
 sample1 | /location/of/assembly/file1.fa
 sample2 | /location/of/assembly/file2.fa
+
+### Test pipeline
+```
+nextflow run main.nf --manifest tests/test_manifest.txt --results_dir results
+```
