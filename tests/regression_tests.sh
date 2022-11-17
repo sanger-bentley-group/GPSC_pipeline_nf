@@ -17,7 +17,7 @@ echo "Starting regression tests..."
 echo ""
 
 # Run pipeline on test input data
-${SUDO_OPT}nextflow -log nextflow_test.log run main.nf --manifest ${work_dir}/test_manifest.txt --results_dir ${work_dir} -resume
+${SUDO_OPT}nextflow -log nextflow_test.log run main.nf --manifest ${work_dir}/test_one_manifest.txt --results_dir ${work_dir} -resume
 cat nextflow_test.log
 echo ""
 
@@ -46,6 +46,7 @@ function file_diff {
 
 error_status=0
 # Check for test_drug_cat_alleles.txt output
+rm ${work_dir}/poppunk_clusters_clusters.csv ${work_dir}/test_clusters.csv
 cat ${work_dir}/poppunk_clusters_clusters.csv | sed '1d' | sed 's/test_//' | sort > ${work_dir}/test_clusters.csv
 file_diff "${work_dir}/test_clusters.csv" "${work_dir}/actual_clusters.txt"
 out=$?

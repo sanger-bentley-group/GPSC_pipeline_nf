@@ -23,14 +23,17 @@ workflow {
         db_dir = file(params.db_dir)
         db_dir.mkdir()
 
-        download_GPS_ref_db(params.gps_db)
+        download_GPS_ref_db(file(params.gps_db))
         download_GPS_ref_db.out.db
         .subscribe { it ->
             it.moveTo(file("${params.db_dir}/"))
         }
         get_GPSC(poppunk_query_file_ch, file(params.gps_db_local), params.gps_db_name, download_GPS_ref_db.out.trigger)
+
     } else {
+
         get_GPSC(poppunk_query_file_ch, file(params.gps_db_local), params.gps_db_name, "go")
+        
     }
 
     // Publish GPSCs
