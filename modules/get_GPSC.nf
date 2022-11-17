@@ -1,6 +1,6 @@
 process get_GPSC {
 
-    container 'bluemoon222/gpsc_pipeline:0.0.1'
+    container 'staphb/poppunk:2.5.0'
 
     input:
     path(query_file)

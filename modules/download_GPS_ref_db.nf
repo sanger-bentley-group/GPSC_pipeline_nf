@@ -1,6 +1,6 @@
 process download_GPS_ref_db {
 
-    container 'bluemoon222/gpsc_pipeline:0.0.1'
+    container 'kubeless/unzip'
 
     input:
     file(gps_db)
