@@ -14,11 +14,6 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - uses: easimon/maximize-build-space@master
-      with:
-        root-reserve-mb: 30720
-        swap-size-mb: 30720
-        remove-dotnet: 'true'
     - uses: actions/checkout@v2
     - uses: actions/setup-java@v3
       with:
