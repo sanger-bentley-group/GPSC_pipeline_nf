@@ -2,11 +2,11 @@
 
 name: test
 
-on:
-  push:
-    branches: [ master, dev ]
-  pull_request:
-    branches: [ master, dev ]
+# on:
+#   push:
+#     branches: [ master, dev ]
+#   pull_request:
+#     branches: [ master, dev ]
 
 jobs:
   test:
@@ -25,4 +25,4 @@ jobs:
         curl -s https://get.nextflow.io | bash
         sudo mv nextflow /usr/bin
     - name: Regression tests
-      run: ./regression_tests.sh
+      run: ./tests/regression_tests.sh

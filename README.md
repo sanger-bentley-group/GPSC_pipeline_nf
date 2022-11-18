@@ -28,6 +28,7 @@ sample1 | /location/of/assembly/file1.fa
 sample2 | /location/of/assembly/file2.fa
 
 ### Test pipeline
+This test checks whether the output is as expected.
 ```
-nextflow run main.nf --manifest tests/test_manifest.txt --results_dir results
+./tests/regression_tests.sh
 ```
