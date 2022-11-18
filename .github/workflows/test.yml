@@ -4,9 +4,9 @@ name: test
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, dev ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, dev ]
 
 jobs:
   test:
@@ -15,11 +15,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '17'
     - name: Install Nextflow
       run: |
         # Install latest version of Nextflow
         curl -s https://get.nextflow.io | bash
         sudo mv nextflow /usr/bin
     - name: Regression tests
-      run: ./regression_tests.sh -s
-      shell: bash
+      run: ./tests/regression_tests.sh
