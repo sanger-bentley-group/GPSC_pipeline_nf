@@ -1,2 +1,0 @@
-sample_id	assembly
-test_28420_2#181	../../../tests/data/assemblies/28420_2#181.contigs_velvet.fa

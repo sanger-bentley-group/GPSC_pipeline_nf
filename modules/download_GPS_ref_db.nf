@@ -1,20 +1,18 @@
 process download_GPS_ref_db {
 
-    container 'kubeless/unzip'
+    container 'inutano/wget:1.20.3-r1'
 
     input:
-    file(gps_db)
+    val(gps_db)
 
     output:
-    path("${params.gps_db_name}"), emit: db
-    val("go"), emit: trigger
+    path("${params.gps_db_name}.zip")
 
     script:
-    gps_db_name=params.gps_db_name
     """
+    #!/bin/sh
+    
     wget -q ${gps_db}
-    unzip ${gps_db_name}.zip
-    rm *.zip
     """
 
 }
