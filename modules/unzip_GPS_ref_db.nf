@@ -15,7 +15,7 @@ process unzip_GPS_ref_db {
     #!/bin/sh
 
     unzip ${gps_db_zip} -d ${gps_db_name}
-    #rm "\$(readlink -f ${gps_db_zip})"
+    rm "\$(readlink -f ${gps_db_zip})"
     """
 
 }
