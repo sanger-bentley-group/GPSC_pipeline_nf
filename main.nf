@@ -12,6 +12,7 @@ nextflow.enable.dsl=2
 include { download_GPS_ref_db } from './modules/download_GPS_ref_db.nf'
 include { unzip_GPS_ref_db } from './modules/unzip_GPS_ref_db.nf'
 include { get_GPSC } from './modules/get_GPSC.nf'
+include { add_version } from './modules/add_version.nf'
 
 workflow {
 
@@ -39,10 +40,13 @@ workflow {
 
     }
 
+    // Add version
+    add_version(get_GPSC.out)
+
     // Publish GPSCs
     results_dir = file(params.results_dir)
     results_dir.mkdir()
-    get_GPSC.out
+    add_version.out
     .subscribe { it ->
         it.copyTo(file("${results_dir}"))
     }
