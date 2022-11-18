@@ -17,7 +17,7 @@ jobs:
     - uses: easimon/maximize-build-space@master
       with:
         root-reserve-mb: 512
-        swap-size-mb: 1024
+        swap-size-mb: 30720
         remove-dotnet: 'true'
     - uses: actions/checkout@v2
     - uses: actions/setup-java@v3
