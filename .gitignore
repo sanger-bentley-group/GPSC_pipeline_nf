@@ -7,5 +7,6 @@ tests/.nextflow
 tests/nextflow_test.log
 tests/poppunk_clusters_clusters.csv
 tests/test_clusters.csv
+tests/gpsc_output.csv
 output
 .DS_Store
