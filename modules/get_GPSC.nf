@@ -8,7 +8,7 @@ process get_GPSC {
     path(gps_db_external_clusters)
 
     output:
-    path("${output_dir}/${output_dir}_clusters.csv")
+    path("${output_dir}/${output_dir}_external_clusters.csv")
 
     script:
     output_dir="poppunk_clusters"
@@ -16,7 +16,7 @@ process get_GPSC {
 
     """
     sed -i '1d' ${query_file}
-    poppunk_assign --db ${gps_db} --distances ${gps_db}/${gps_db}.dists --query ${query_file} --external-clustering ${gps_db_external_clusters} --output ${output_dir} --threads ${task.cpus}
+    poppunk_assign --db ${gps_db} --query ${query_file} --external-clustering ${gps_db_external_clusters} --output ${output_dir} --threads ${task.cpus}
     """
 
 }
