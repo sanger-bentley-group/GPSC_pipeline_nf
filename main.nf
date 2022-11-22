@@ -76,5 +76,5 @@ workflow {
     }
 
     // Check output
-    check_output(file("${results_dir}/gpsc_output.csv"), poppunk_query_file_ch) | view { "$it" }
+    check_output(add_version.out, poppunk_query_file_ch) | view { "$it" }
 }

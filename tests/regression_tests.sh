@@ -45,12 +45,12 @@ function file_diff {
 
 error_status=0
 # Check for test_drug_cat_alleles.txt output
-rm ${work_dir}/test_clusters.csv
+#rm ${work_dir}/test_clusters.csv
 cat ${work_dir}/gpsc_output.csv | sed '1d' | sed 's/test_//' | sort > ${work_dir}/test_clusters.csv
 file_diff "${work_dir}/test_clusters.csv" "${work_dir}/actual_clusters.csv"
 out=$?
 error_status=$(($error_status | $out))
-rm ${work_dir}/gpsc_output.csv
+#rm ${work_dir}/gpsc_output.csv
 
 # Error if any output files missing or not expected
 if [[ ${error_status} -eq 1 ]]; then
