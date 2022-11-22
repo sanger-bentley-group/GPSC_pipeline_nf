@@ -14,6 +14,7 @@ include { download_GPS_ref_db } from './modules/download_GPS_ref_db.nf'
 include { unzip_GPS_ref_db } from './modules/unzip_GPS_ref_db.nf'
 include { get_GPSC } from './modules/get_GPSC.nf'
 include { add_version } from './modules/add_version.nf'
+include { check_output } from './modules/check_output.nf'
 
 workflow {
 
@@ -71,6 +72,9 @@ workflow {
     results_dir.mkdir()
     add_version.out
     .subscribe { it ->
-        it.copyTo(file("${results_dir}"))
+        it.copyTo(file("${results_dir}/gpsc_output.csv"))
     }
+
+    // Check output
+    check_output(file("${results_dir}/gpsc_output.csv"), poppunk_query_file_ch) | view { "$it" }
 }
