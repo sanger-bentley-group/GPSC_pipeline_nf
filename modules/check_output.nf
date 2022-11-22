@@ -13,8 +13,8 @@ process check_output {
     results_dir=params.results_dir
     """
     #!/usr/local/bin/bash
-    num_manifest_lines=\$(cat ${manifest} | wc -l)
-    num_poppunk_lines=\$(cat ${poppunk_output} | wc -l)
+    num_manifest_lines=\$(cat ${manifest} | grep '\t' | wc -l)
+    num_poppunk_lines=\$(cat ${poppunk_output} | grep , | wc -l)
     sample_num=\$(( \${num_poppunk_lines} - 1 ))
     manifest_num=\$(( \${num_manifest_lines} - 1 ))
     if [ \${num_manifest_lines} -eq \${num_poppunk_lines} ]
