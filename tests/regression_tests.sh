@@ -45,7 +45,10 @@ function file_diff {
 
 error_status=0
 # Check for test_drug_cat_alleles.txt output
-rm ${work_dir}/test_clusters.csv
+if [ -f ${work_dir}/test_clusters.csv ]
+then
+    rm ${work_dir}/test_clusters.csv
+fi
 cat ${work_dir}/gpsc_output.csv | sed '1d' | sed 's/test_//' | sort > ${work_dir}/test_clusters.csv
 file_diff "${work_dir}/test_clusters.csv" "${work_dir}/actual_clusters.csv"
 out=$?
