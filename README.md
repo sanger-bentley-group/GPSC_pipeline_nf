@@ -25,7 +25,9 @@ sample_id | assembly
 sample1 | /location/of/assembly/file1.fa
 sample2 | /location/of/assembly/file2.fa
 
-The first time you run the pipeline, it will download the `GPS_v6` database in a `db` directory (within the current directory where you run the pipeline). If you would like to use an existing `GPS_v6` database instead (and not re-download it), create a directory called `db` and move/symlink your `GPS_v6` database.
+The first time you run the pipeline, it will download the `GPS_v6` database and `GPS_v6_external_clusters.csv` in a `db` directory (within the current directory where you run the pipeline).
+
+If you would like to use an existing `GPS_v6` database instead (and not re-download it), include the flags `--gps_db /path/to/GPS_v6 --gps_db_external_clusters /path/to/GPS_v6_external_clusters.csv`. Note: you will need to supply the decompressed/unzipped GPS database directory (e.g. `/path/to/GPS_v6` not `/path/to/GPS_v6.zip`).
 
 ### Output
 csv file `gps_output.csv` in `results_dir`, e.g.:

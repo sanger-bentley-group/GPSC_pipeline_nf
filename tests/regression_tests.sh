@@ -18,7 +18,6 @@ echo ""
 
 # Run pipeline on test input data
 nextflow -log nextflow_test.log run main.nf --manifest ${work_dir}/test_manifest.txt --results_dir ${work_dir} -resume
-cat nextflow_test.log
 echo ""
 
 function file_diff {
@@ -46,7 +45,10 @@ function file_diff {
 
 error_status=0
 # Check for test_drug_cat_alleles.txt output
-rm ${work_dir}/test_clusters.csv
+if [ -f ${work_dir}/test_clusters.csv ]
+then
+    rm ${work_dir}/test_clusters.csv
+fi
 cat ${work_dir}/gpsc_output.csv | sed '1d' | sed 's/test_//' | sort > ${work_dir}/test_clusters.csv
 file_diff "${work_dir}/test_clusters.csv" "${work_dir}/actual_clusters.csv"
 out=$?
@@ -55,9 +57,8 @@ rm ${work_dir}/gpsc_output.csv
 
 # Error if any output files missing or not expected
 if [[ ${error_status} -eq 1 ]]; then
-    echo ""
-    echo "Test failed. Outputs listed may be missing or their contents not expected."
+    echo "Regression test failed. Outputs listed may be missing or their contents not expected."
     exit 1
 else
-    echo "Test passed. All outputs expected."
+    echo "Regression test passed. All outputs expected."
 fi
