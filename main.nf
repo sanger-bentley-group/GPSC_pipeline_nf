@@ -25,10 +25,13 @@ workflow {
 
     // Create db directory if needed
     db_dir = file(params.db_dir)
-    db_dir.mkdir()
 
     // Get GPS external clusters
     if (!file(params.gps_db_external_clusters).exists()) {
+
+        println("${params.gps_db_external_clusters} does not exist. Downloading to ${params.db_dir}.")
+
+        db_dir.mkdir()
 
         download_GPS_external_clusters(params.gps_db_external_clusters_url)
         download_GPS_external_clusters.out
@@ -45,6 +48,10 @@ workflow {
 
     // Get GPS db
     if (!file(params.gps_db).exists()) {
+
+        println("${params.gps_db_external_clusters} does not exist. Downloading to ${params.db_dir}.")
+
+        db_dir.mkdir()
 
         download_GPS_ref_db(params.gps_db_url)
         unzip_GPS_ref_db(download_GPS_ref_db.out)
